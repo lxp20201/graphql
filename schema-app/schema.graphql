@@ -1,0 +1,66 @@
+type Query {
+  user: [getMainType]
+}
+
+type Mutation {
+   login(password:String,email:String,remember:Boolean):loginresponse
+   verifymail(name:String,email:String):String
+   signin(email:String,name:String,username:String,password:String):String
+}
+
+type Headers {
+  allow: String
+  connection: String
+  contentlanguage: String
+  contentlength: String
+  contenttype: String
+  date: String
+  server: String
+  setcookie: [String]
+}
+
+type loginresponse {
+  headers: Headers
+}
+
+type Image {
+  raw: String
+  small: String
+  large: String
+}
+
+type CourseVideo {
+  uri: String
+}
+
+type CourseImage {
+  uri: String
+}
+
+type Media {
+  image: Image
+  course_video: CourseVideo
+  course_image: CourseImage
+}
+
+type getMainType {
+  blocks_url: String
+  effort: String
+  end: String
+  enrollment_start: String
+  enrollment_end: String
+  id: String
+  name: String
+  number: String
+  org: String
+  short_description: String
+  start: String
+  start_display: String
+  start_type: String
+  pacing: String
+  mobile_available: Boolean
+  hidden: Boolean
+  invitation_only: Boolean
+  course_id: String
+  media: Media
+}
