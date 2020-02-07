@@ -16,11 +16,12 @@ type Headers {
   contenttype: String
   date: String
   server: String
-  setcookie: [String]
+  setcookie: [String!]!  
 }
 
 type loginresponse {
   headers: Headers
+  exception:String
 }
 
 type Image {

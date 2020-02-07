@@ -23,16 +23,14 @@ const Mutation = {
   login: async (root, args, context, info) => {
     try {
       let redata = await trigger.makeHttpCall("post","/user_api/v1/account/login_session/", args);
-      console.log(redata.headers)
+      var token=redata.headers['set-cookie']
+      redata.headers.setcookie = token;
       return redata;
     } catch (error) {
-      console.log(error)
       logger.error(error);
-      return { httpError: error };
+        throw new Error(error.response.data)
     }
-  },
-
-  
+  },  
   verifymail: async (root, args, context, info) => {
     try {
       let redata = await trigger.meanHttpCall("post", "/verifyemail", args);
