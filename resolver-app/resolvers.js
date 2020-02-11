@@ -1,6 +1,6 @@
 var axios = require("axios");
 const trigger = require("../lib/http/invoke");
-const db = require("../db");
+
 var logger = require("../logger/logger");
 
 const Query = {
@@ -45,14 +45,16 @@ const Mutation = {
     try {
       let redata = await trigger.makeHttpCall(
         "post",
-        "/user_api/v1/account/registration",
+        "/user_api/v1/account/registration/",
         args
       );
       logger.info(redata.data);
       return redata;
     } catch (error) {
       logger.error(error);
-      return { httpError: error };
+      console.log(error.response.data)
+      ///return { httpError: error.response.data };
+      throw new Error(error.response)
     }
   }
 };

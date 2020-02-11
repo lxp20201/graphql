@@ -5,7 +5,7 @@ type Query {
 type Mutation {
    login(password:String,email:String,remember:Boolean):loginresponse
    verifymail(name:String,email:String):String
-   signin(email:String,name:String,username:String,password:String):String
+   signin(email:String,name:String,username:String,password:String,honor_code:Boolean,terms_of_service:Boolean):registration
 }
 
 type Headers {
@@ -23,7 +23,14 @@ type loginresponse {
   headers: Headers
   exception:String
 }
-
+type registration {
+  data: Data
+  exception:String
+}
+type Data{
+  success:Boolean,
+  exception:String
+}
 type Image {
   raw: String
   small: String
