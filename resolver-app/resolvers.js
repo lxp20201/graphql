@@ -22,7 +22,7 @@ const Query = {
 const Mutation = {
   login: async (root, args, context, info) => {
     try {
-      let redata = await trigger.makeHttpCall("post","/user_api/v1/account/login_session/", args);
+      let redata = await trigger.meanHttpCall("post","login", args);
       var token=redata.headers['set-cookie']
       redata.headers.setcookie = token;
       return redata;
