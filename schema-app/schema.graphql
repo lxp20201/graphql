@@ -3,7 +3,7 @@ type Query {
 }
 
 type Mutation {
-   login(password:String,email:String,remember:Boolean):loginresponse
+   login(password:String,email:String,remember:Boolean):registration
    verifymail(name:String,email:String):String
    signin(email:String,name:String,username:String,password:String,honor_code:Boolean,terms_of_service:Boolean,is_staff:Boolean,organization:String,mobile:String,confirmpassword:String):registration
 }
@@ -20,7 +20,7 @@ type Headers {
 }
 
 type loginresponse {
-  headers: Headers
+  data: Data
   exception:String
 }
 type registration {
