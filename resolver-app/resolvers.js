@@ -22,12 +22,13 @@ const Query = {
 const Mutation = {
   login: async (root, args, context, info) => {
     try {
+      console.log(args)
       let redata = await trigger.meanHttpCall("post","login", args);
       if(redata.data && redata.data.success==false){
         return redata;
       }else{
-        var token=redata.headers['set-cookie']
-        redata.headers.setcookie = token;
+        var token=redata.data.token['set-cookie']
+        redata.data.token = token[0];
         return redata;
       }
     } catch (error) {
@@ -49,7 +50,7 @@ const Mutation = {
       return redata;
     } catch (error) {
       logger.error(error);
-      return { httpError: error };
+      throw new Error(error.response.data)
     }
   },
   signin: async (root, args, context, info) => {
@@ -78,6 +79,15 @@ const Mutation = {
       logger.error(error);
       console.log(error.response.data)
       ///return { httpError: error.response.data };
+      throw new Error(error.response)
+    }
+  },
+  updateUser: async (root, args, context, info) => {
+    try {
+      let redata = await trigger.meanHttpCall("post", "/updateuserstatus", args);
+      logger.info(redata);
+      return redata;
+    } catch (error) {
       throw new Error(error.response)
     }
   }
