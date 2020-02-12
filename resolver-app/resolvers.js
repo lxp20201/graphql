@@ -32,7 +32,14 @@ const Mutation = {
       }
     } catch (error) {
       logger.error(error);
+      if(error.response.data&& error.response.data.error){
+        error.response.data.message=error.response.data.error
+        return error.response;
+      }else{
         throw new Error(error.response.data)
+      }
+     
+       
     }
   },  
   verifymail: async (root, args, context, info) => {
@@ -55,8 +62,13 @@ const Mutation = {
       );
       if(redata.data.success==false){
         logger.info(redata.data);
-        redata.data.message='User Account already exist ? Thank You'
-        return redata
+        if(redata.data.error){
+          return redata
+        }else{
+          redata.data.message='User Account already exist ? Thank You'
+          return redata
+        }
+        
       }else{
         logger.info(redata.data);
         return redata;

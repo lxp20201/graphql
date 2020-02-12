@@ -30,6 +30,7 @@ type registration {
 type Data{
   success:Boolean,
   message:String,
+  error:String,
   csrftoken:String,
   user_detail:userData,
   exception:String
