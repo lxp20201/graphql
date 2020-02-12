@@ -43,9 +43,10 @@ const Mutation = {
   },
   signin: async (root, args, context, info) => {
     try {
-      let redata = await trigger.makeHttpCall(
+      console.log(args)
+      let redata = await trigger.meanHttpCall(
         "post",
-        "/user_api/v1/account/registration/",
+        "lmsregistration",
         args
       );
       logger.info(redata.data);

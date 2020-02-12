@@ -29,6 +29,7 @@ type registration {
 }
 type Data{
   success:Boolean,
+  message:String,
   exception:String
 }
 type Image {
