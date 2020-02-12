@@ -5,7 +5,7 @@ type Query {
 type Mutation {
    login(password:String,email:String,remember:Boolean):loginresponse
    verifymail(name:String,email:String):String
-   signin(email:String,name:String,username:String,password:String,honor_code:Boolean,terms_of_service:Boolean):registration
+   signin(email:String,name:String,username:String,password:String,honor_code:Boolean,terms_of_service:Boolean,is_staff:Boolean):registration
 }
 
 type Headers {
@@ -30,6 +30,8 @@ type registration {
 type Data{
   success:Boolean,
   message:String,
+  csrftoken:String,
+  user_detail:userData,
   exception:String
 }
 type Image {
@@ -37,7 +39,13 @@ type Image {
   small: String
   large: String
 }
-
+type userData{
+  username:String,
+  name:String,
+  email:String,
+  mobile:String,
+  _id:String
+}
 type CourseVideo {
   uri: String
 }
