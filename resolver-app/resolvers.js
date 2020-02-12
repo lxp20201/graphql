@@ -46,7 +46,7 @@ const Mutation = {
       console.log(args)
       let redata = await trigger.meanHttpCall(
         "post",
-        "lmsregistration",
+        "registration",
         args
       );
       logger.info(redata.data);
