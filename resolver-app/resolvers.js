@@ -45,10 +45,11 @@ const Mutation = {
   },  
   verifymail: async (root, args, context, info) => {
     try {
-      let redata = await trigger.meanHttpCall("post", "/verifyemail", args);
+      let redata = await trigger.meanHttpCall("post", "verifyemail", args);
       logger.info(redata);
       return redata;
     } catch (error) {
+      console.log(error)
       logger.error(error);
       throw new Error(error.response.data)
     }
