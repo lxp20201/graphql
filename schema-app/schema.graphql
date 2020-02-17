@@ -7,6 +7,27 @@ type Mutation {
    verifymail(name:String,email:String,_id:String):registration
    signin(email:String,name:String,username:String,password:String,honor_code:Boolean,terms_of_service:Boolean,is_staff:Boolean,organization:String,mobile:String,confirmpassword:String):registration
    updateUser(email:String,_id:String):registration
+   admin_dashboard(is_staff:Boolean):dashboard
+}
+
+  
+type dashboard {
+  success: Boolean
+  message: [Message]
+}
+
+type Message {
+  _id: String
+  username: String
+  name: String
+  honor_code: Boolean
+  terms_of_service: Boolean
+  email: String
+  password: String
+  mobile: String
+  is_staff: Boolean
+  is_active: Boolean
+  is_superuser: Boolean
 }
 
 type Headers {

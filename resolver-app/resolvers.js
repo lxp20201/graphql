@@ -91,6 +91,28 @@ const Mutation = {
     } catch (error) {
       throw new Error(error.response)
     }
+  },
+  admin_dashboard: async (root, args, context, info) => {
+    try {
+      let redata = await trigger.meanHttpCall(
+        "post",
+        "/adminuserdashboard",
+        args
+      );
+      if(redata.data && redata.data.success==false){
+        return redata;
+      }else{
+        return redata.data;
+      }
+    } catch (error) {
+      logger.error(error);
+      if(error.response.data&& error.response.data.error){
+        error.response.data.message=error.response.data.error
+        return error.response;
+      }else{
+        throw new Error(error.response.data)
+      }
+    }
   }
 };
 
