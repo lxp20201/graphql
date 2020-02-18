@@ -22,74 +22,69 @@ const Query = {
 const Mutation = {
   login: async (root, args, context, info) => {
     try {
-      console.log(args)
-      let redata = await trigger.meanHttpCall("post","login", args);
-      if(redata.data && redata.data.success==false){
+      console.log(args);
+      let redata = await trigger.meanHttpCall("post", "login", args);
+      if (redata.data && redata.data.success == false) {
         return redata;
-      }else{
-        var token=redata.data.token['set-cookie']
+      } else {
+        var token = redata.data.token["set-cookie"];
         redata.data.token = token[0];
         return redata;
       }
     } catch (error) {
       logger.error(error);
-      if(error.response.data&& error.response.data.error){
-        error.response.data.message=error.response.data.error
+      if (error.response.data && error.response.data.error) {
+        error.response.data.message = error.response.data.error;
         return error.response;
-      }else{
-        throw new Error(error.response.data)
+      } else {
+        throw new Error(error.response.data);
       }
-     
-       
     }
-  },  
+  },
   verifymail: async (root, args, context, info) => {
     try {
       let redata = await trigger.meanHttpCall("post", "verifyemail", args);
       logger.info(redata);
       return redata;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       logger.error(error);
-      throw new Error(error.response.data)
+      throw new Error(error.response.data);
     }
   },
   signin: async (root, args, context, info) => {
     try {
-    
-      let redata = await trigger.meanHttpCall(
-        "post",
-        "registration",
-        args
-      );
-      if(redata.data.success==false){
+      let redata = await trigger.meanHttpCall("post", "registration", args);
+      if (redata.data.success == false) {
         logger.info(redata.data);
-        if(redata.data.error){
-          return redata
-        }else{
-          redata.data.message='User Account already exist ? Thank You'
-          return redata
+        if (redata.data.error) {
+          return redata;
+        } else {
+          redata.data.message = "User Account already exist ? Thank You";
+          return redata;
         }
-        
-      }else{
+      } else {
         logger.info(redata.data);
         return redata;
       }
-      
     } catch (error) {
       logger.error(error);
-      console.log(error.response.data)
+      console.log(error.response.data);
       ///return { httpError: error.response.data };
-      throw new Error(error.response)
+      throw new Error(error.response);
     }
   },
   updateUser: async (root, args, context, info) => {
     try {
-      let redata = await trigger.meanHttpCall("post", "/updateuserstatus", args);
+      let redata = await trigger.meanHttpCall(
+        "post",
+        "/updateuserstatus",
+        args
+      );
       logger.info(redata);
       return redata;
     } catch (error) {
-      throw new Error(error.response)
+      throw new Error(error.response);
     }
   },
   admin_dashboard: async (root, args, context, info) => {
@@ -99,18 +94,19 @@ const Mutation = {
         "/adminuserdashboard",
         args
       );
-      if(redata.data && redata.data.success==false){
-        return redata;
-      }else{
+      if (redata.data && redata.data.success == false) {
+        redata.data.error = redata.data.message;
+        return redata.data;
+      } else {
         return redata.data;
       }
     } catch (error) {
       logger.error(error);
-      if(error.response.data&& error.response.data.error){
-        error.response.data.message=error.response.data.error
+      if (error.response.data && error.response.data.error) {
+        error.response.data.message = error.response.data.error;
         return error.response;
-      }else{
-        throw new Error(error.response.data)
+      } else {
+        throw new Error(error.response.data);
       }
     }
   }

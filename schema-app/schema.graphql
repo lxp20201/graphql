@@ -3,16 +3,32 @@ type Query {
 }
 
 type Mutation {
-   login(password:String,email:String,remember:Boolean,is_staff:Boolean):registration
-   verifymail(name:String,email:String,_id:String):registration
-   signin(email:String,name:String,username:String,password:String,honor_code:Boolean,terms_of_service:Boolean,is_staff:Boolean,organization:String,mobile:String,confirmpassword:String):registration
-   updateUser(email:String,_id:String):registration
-   admin_dashboard(is_staff:Boolean):dashboard
+  login(
+    password: String
+    email: String
+    remember: Boolean
+    is_staff: Boolean
+  ): registration
+  verifymail(name: String, email: String, _id: String): registration
+  signin(
+    email: String
+    name: String
+    username: String
+    password: String
+    honor_code: Boolean
+    terms_of_service: Boolean
+    is_staff: Boolean
+    organization: String
+    mobile: String
+    confirmpassword: String
+  ): registration
+  updateUser(email: String, _id: String): registration
+  admin_dashboard(is_staff: Int): dashboard
 }
 
-  
 type dashboard {
   success: Boolean
+  error: String
   message: [Message]
 }
 
@@ -38,25 +54,25 @@ type Headers {
   contenttype: String
   date: String
   server: String
-  setcookie: [String!]!  
+  setcookie: [String!]!
 }
 
 type loginresponse {
   data: Data
-  exception:String
+  exception: String
 }
 type registration {
   data: Data
-  exception:String
+  exception: String
 }
-type Data{
-  success:Boolean,
-  message:String,
-  error:String,
-  csrftoken:String,
-  user_detail:userData,
-  token:String,
-  exception:String
+type Data {
+  success: Boolean
+  message: String
+  error: String
+  csrftoken: String
+  user_detail: userData
+  token: String
+  exception: String
 }
 type Image {
   raw: String
@@ -64,12 +80,12 @@ type Image {
   large: String
 }
 
-type userData{
-  username:String,
-  name:String,
-  email:String,
-  mobile:String,
-  _id:String
+type userData {
+  username: String
+  name: String
+  email: String
+  mobile: String
+  _id: String
 }
 type CourseVideo {
   uri: String
