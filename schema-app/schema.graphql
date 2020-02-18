@@ -23,7 +23,7 @@ type Mutation {
     confirmpassword: String
   ): registration
   updateUser(email: String, _id: String): registration
-  admin_dashboard(is_staff: Int): dashboard
+  admin_dashboard(is_staff: Boolean): dashboard
 }
 
 type dashboard {
