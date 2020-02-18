@@ -96,6 +96,7 @@ const Mutation = {
       );
       if (redata.data && redata.data.success == false) {
         redata.data.error = redata.data.message;
+        redata.data.message = [];
         return redata.data;
       } else {
         return redata.data;
