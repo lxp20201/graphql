@@ -26,7 +26,13 @@ type Mutation {
   admin_dashboard(is_staff: Boolean): dashboard
   confirmpassword(email:String,password:String):updatepassword
   resetpassword(email:String,name:String):generate_reset_link
+  checklinkstatus(email:String):link_verify
 }
+
+  type link_verify{
+  success: Boolean
+  message: String
+  }
 
 type generate_reset_link {
   success: Boolean
