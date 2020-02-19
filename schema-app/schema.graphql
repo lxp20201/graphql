@@ -25,6 +25,12 @@ type Mutation {
   updateUser(email: String, _id: String): registration
   admin_dashboard(is_staff: Boolean): dashboard
   confirmpassword(email:String,password:String):updatepassword
+  resetpassword(email:String,name:String):generate_reset_link
+}
+
+type generate_reset_link {
+  success: Boolean
+  message: String
 }
 
 type updatepassword{
