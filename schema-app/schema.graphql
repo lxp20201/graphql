@@ -1,5 +1,6 @@
 type Query {
   user: [getMainType]
+  getcourse:[coursebyid]
 }
 
 type Mutation {
@@ -9,7 +10,7 @@ type Mutation {
     remember: Boolean
     is_staff: Boolean
   ): registration
-  verifymail(name: String, email: String, _id: String): registration
+  verifymail(name: String, email: String, _id: String,is_staff:Boolean): registration
   signin(
     email: String
     name: String
@@ -30,6 +31,26 @@ type Mutation {
   coursecreation(course_name:String,course_description:String,user_id:String,
   org:String,number:String,run:String,course_video:[String],course_docs: [String],
   course_image: [String]):course_creation
+}
+
+type coursebyid {
+  success: Boolean
+  message: [courseMessage]
+}
+
+type courseMessage {
+  _id: String
+  course_name: String
+  course_description: String
+  user_id: String
+  org: String
+  number: String
+  run: String
+  display_name: String
+  is_active: Boolean
+  course_video: [String]
+  course_docs: [String]
+  course_image: [String]
 }
 
 type course_creation{

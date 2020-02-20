@@ -16,6 +16,19 @@ const Query = {
       logger.error(error);
       return { httpError: error };
     }
+  },
+  getcourse: async (root, args, context, info) => {
+    try {
+      let redata = await trigger.makeHttpCall(
+        "get",
+        "/viewcourse?user_id="+args.user_id
+      );
+      logger.info(redata.data.results);
+      return redata.data.results;
+    } catch (error) {
+      logger.error(error);
+      return { httpError: error };
+    }
   }
 };
 
