@@ -1,6 +1,7 @@
 type Query {
   user: [getMainType]
   getcourse(user_id: String): coursebyid
+  getcoursebyid(user_id: String,_id:String):coursebyid
 }
 
 type Mutation {
