@@ -139,7 +139,7 @@ type userData {
   username: String
   name: String
   email: String
-  is_staff:String
+  is_staff:Boolean
   mobile: String
   _id: String
 }
