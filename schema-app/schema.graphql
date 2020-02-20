@@ -27,6 +27,21 @@ type Mutation {
   confirmpassword(email:String,password:String):updatepassword
   resetpassword(email:String,name:String,is_staff:Boolean):generate_reset_link
   checklinkstatus(email:String):link_verify
+  coursecreation(course_name:String,course_description:String,user_id:String,
+  org:String,number:String,run:String,course_video:[String],course_docs: [String],
+  course_image: [String]):course_creation
+}
+
+type course_creation{
+  success:String
+  message:String
+  error:err_msg
+}
+
+type err_msg{
+  CourseErrMsg:String
+  OrgErrMsg:String
+  ErrMsg:String
 }
 
   type link_verify{

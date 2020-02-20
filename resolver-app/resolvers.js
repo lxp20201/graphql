@@ -176,6 +176,30 @@ const Mutation = {
         throw new Error(error.response.data);
       }
     }
+  },
+  coursecreation: async (root, args, context, info) => {
+    try {
+      let redata = await trigger.meanHttpCall(
+        "post",
+        "/addcourse",  
+        args
+      );
+      if (redata.data && redata.data.success == false) {  
+        redata.data.error = redata.data.message ;   
+        redata.data.message = '' ;
+        return redata.data;
+      } else {
+        return redata.data;
+      }
+    } catch (error) {
+      logger.error(error);
+      if (error.response.data && error.response.data.error) {
+        error.response.data.message = error.response.data.error;
+        return error.response;
+      } else {
+        throw new Error(error.response.data);
+      }
+    }
   }
 };
 
