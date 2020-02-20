@@ -83,7 +83,7 @@ type courseMessage {
 }
 
 type course_creation {
-  success: String
+  success: Boolean
   message: String
   error: err_msg
 }
