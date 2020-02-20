@@ -1,6 +1,6 @@
 type Query {
   user: [getMainType]
-  getcourse(user_id:String):coursebyid
+  getcourse(user_id: String): coursebyid
 }
 
 type Mutation {
@@ -9,8 +9,13 @@ type Mutation {
     email: String
     remember: Boolean
     is_staff: Boolean
+  ): login_
+  verifymail(
+    name: String
+    email: String
+    _id: String
+    is_staff: Boolean
   ): registration
-  verifymail(name: String, email: String, _id: String,is_staff:Boolean): registration
   signin(
     email: String
     name: String
@@ -25,17 +30,40 @@ type Mutation {
   ): registration
   updateUser(email: String, _id: String): registration
   admin_dashboard(is_staff: Boolean): dashboard
-  confirmpassword(email:String,password:String):updatepassword
-  resetpassword(email:String,name:String,is_staff:Boolean):generate_reset_link
-  checklinkstatus(email:String):link_verify
-  coursecreation(course_name:String,course_description:String,user_id:String,
-  org:String,number:String,run:String,course_video:[String],course_docs: [String],
-  course_image: [String]):course_creation
+  confirmpassword(email: String, password: String): updatepassword
+  resetpassword(
+    email: String
+    name: String
+    is_staff: Boolean
+  ): generate_reset_link
+  checklinkstatus(email: String): link_verify
+  coursecreation(
+    course_name: String
+    course_description: String
+    user_id: String
+    org: String
+    number: String
+    run: String
+    course_video: [String]
+    course_docs: [String]
+    course_image: [String]
+  ): course_creation
+}
+
+type login_ {
+  success: String
+  message: String
+  username: String
+  email: String
+  _id: String
+  name: String
+  is_staff: String
+  csrftoken: [String]
 }
 
 type coursebyid {
   success: Boolean
-  error:String
+  error: String
   message: [courseMessage]
 }
 
@@ -54,31 +82,31 @@ type courseMessage {
   course_image: [String]
 }
 
-type course_creation{
-  success:String
-  message:String
-  error:err_msg
+type course_creation {
+  success: String
+  message: String
+  error: err_msg
 }
 
-type err_msg{
-  CourseErrMsg:String
-  OrgErrMsg:String
-  ErrMsg:String
+type err_msg {
+  CourseErrMsg: String
+  OrgErrMsg: String
+  ErrMsg: String
 }
 
-  type link_verify{
+type link_verify {
   success: Boolean
   message: String
-  }
+}
 
 type generate_reset_link {
   success: Boolean
   message: String
 }
 
-type updatepassword{
-success:Boolean
-message:String
+type updatepassword {
+  success: Boolean
+  message: String
 }
 
 type dashboard {
@@ -139,7 +167,7 @@ type userData {
   username: String
   name: String
   email: String
-  is_staff:Boolean
+  is_staff: Boolean
   mobile: String
   _id: String
 }

@@ -48,11 +48,16 @@ const Mutation = {
       console.log(args);
       let redata = await trigger.meanHttpCall("post", "login", args);
       if (redata.data && redata.data.success == false) {
-        return redata;
+        return redata.data;
       } else {
-        var token = redata.data.token["set-cookie"];
-        redata.data.token = token[0];
-        return redata;
+        redata.data.csrftoken = redata.data.message[0].token        
+        redata.data.username = redata.data.message[0].username;
+        redata.data.email = redata.data.message[0].email;
+        redata.data._id = redata.data.message[0]._id;
+        redata.data.name = redata.data.message[0].name;
+        redata.data.is_staff = redata.data.message[0].is_staff; 
+        redata.data.message = redata.data.message[0].message;  
+        return redata.data;
       }
     } catch (error) {
       logger.error(error);
