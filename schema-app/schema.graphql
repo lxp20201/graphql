@@ -51,7 +51,7 @@ type Mutation {
 }
 
 type login_ {
-  success: String
+  success: Boolean
   message: String
   username: String
   email: String
