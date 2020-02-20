@@ -1,6 +1,6 @@
 type Query {
   user: [getMainType]
-  getcourse:[coursebyid]
+  getcourse(user_id:String):coursebyid
 }
 
 type Mutation {
@@ -35,6 +35,7 @@ type Mutation {
 
 type coursebyid {
   success: Boolean
+  error:String
   message: [courseMessage]
 }
 

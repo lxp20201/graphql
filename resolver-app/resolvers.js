@@ -19,15 +19,25 @@ const Query = {
   },
   getcourse: async (root, args, context, info) => {
     try {
-      let redata = await trigger.makeHttpCall(
+      let redata = await trigger.meanHttpCall(
         "get",
         "/viewcourse?user_id="+args.user_id
-      );
-      logger.info(redata.data.results);
-      return redata.data.results;
+      );    
+      if (redata.data && redata.data.success == false) {       
+        redata.data.error = redata.data.message ;   
+        redata.data.message = '' ;
+        return redata.data;
+      } else {
+        return redata.data;
+      }
     } catch (error) {
       logger.error(error);
-      return { httpError: error };
+      if (error.response.data && error.response.data.error) {
+        error.response.data.message = error.response.data.error;
+        return error.response;
+      } else {
+        throw new Error(error.response.data);
+      }
     }
   }
 };
