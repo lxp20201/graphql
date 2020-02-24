@@ -9,7 +9,8 @@ type Mutation {
     password: String
     email: String
     remember: Boolean
-    is_staff: Boolean
+    is_staff: Boolean,
+    is_superuser: Boolean
   ): login_
   verifymail(
     name: String

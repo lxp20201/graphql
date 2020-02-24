@@ -79,6 +79,7 @@ const Mutation = {
         redata.data._id = redata.data.message[0]._id;
         redata.data.name = redata.data.message[0].name;
         redata.data.is_staff = redata.data.message[0].is_staff; 
+        redata.data.is_superuser = redata.data.message[0].is_superuser; 
         redata.data.message = redata.data.message[0].message;  
         return redata.data;
       }
