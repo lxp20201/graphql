@@ -60,7 +60,8 @@ type login_ {
   _id: String
   name: String
   is_staff: String
-  csrftoken: [String]
+  csrftoken: [String],
+  is_superuser: String
 }
 
 type coursebyid {
