@@ -48,7 +48,8 @@ type Mutation {
     run: String
     course_video: [String]
     course_docs: [String]
-    course_image: [String]
+    course_image: [String],
+    course_content: [course_content]
   ): course_creation
 }
 
@@ -82,7 +83,8 @@ type courseMessage {
   is_active: Boolean
   course_video: [String]
   course_docs: [String]
-  course_image: [String]
+  course_image: [String],
+  course_content: [course_content]
 }
 
 type course_creation {
@@ -208,4 +210,21 @@ type getMainType {
   invitation_only: Boolean
   course_id: String
   media: Media
+}
+
+type course_content {
+  chapter_number: String
+  chapter_name: String
+  chapter_video: [String]
+  chapter_docs: [String]
+  chapter_image: [String],
+  chapter_subcontent: [chapter_subcontent]
+}
+
+type chapter_subcontent {
+  chapter_subcontent_number: String
+  chapter_subcontent_name: String
+  chapter_subcontent_docs: [String]
+  chapter_subcontent_video: [String]
+  chapter_image: [String]
 }
