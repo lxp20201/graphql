@@ -51,7 +51,15 @@ type Mutation {
     course_image: [String],
     course_content: [course_content]
   ): course_creation
+  enrollcourse(course_id:String,creator_id:String,customer_id:String):enroll
 }
+
+
+type enroll {
+  success: Boolean
+  message: String
+}
+
 
 type login_ {
   success: Boolean
