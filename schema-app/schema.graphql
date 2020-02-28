@@ -1,7 +1,14 @@
 type Query {
   user: [getMainType]
   getcourse(user_id: String): coursebyid
-  getcoursebyid(user_id: String,_id:String):coursebyid
+  getcoursebyid(user_id: String, _id: String): coursebyid
+  section(courseid: String, section_name: String, category: String): section_res
+  unit(
+    chapterid: String
+    courseid: String
+    section_name: String
+    category: String
+  ): unit_res
 }
 
 type Mutation {
@@ -9,7 +16,7 @@ type Mutation {
     password: String
     email: String
     remember: Boolean
-    is_staff: Boolean,
+    is_staff: Boolean
     is_superuser: Boolean
   ): login_
   verifymail(
@@ -48,19 +55,39 @@ type Mutation {
     run: String
     course_video: [String]
     course_docs: [String]
-    course_image: [String],
+    course_image: [String]
     course_content: [String]
   ): course_creation
-  enrollcourse(course_id:String,creator_id:String,customer_id:String):enroll
+  enrollcourse(
+    course_id: String
+    creator_id: String
+    customer_id: String
+  ): enroll
 }
-
 
 type enroll {
   success: Boolean
   message: String
 }
 
+type section_res {
+  success: Boolean
+  message: section_locator
+}
 
+type section_locator {
+  locator: String
+  courseKey: String
+}
+
+type unit_res {
+  success: Boolean
+  message: unit_Message
+}
+type unit_Message {
+  locator: String
+  courseKey: String
+}
 type login_ {
   success: Boolean
   message: String
@@ -69,7 +96,7 @@ type login_ {
   _id: String
   name: String
   is_staff: String
-  csrftoken: [String],
+  csrftoken: [String]
   is_superuser: String
 }
 
@@ -91,14 +118,22 @@ type courseMessage {
   is_active: Boolean
   course_video: [String]
   course_docs: [String]
-  course_image: [String],
+  course_image: [String]
   course_content: [String]
+  polyglot_course_response: polyglot_response
+}
+
+type polyglot_response {
+  url: String
+  course_key: String
+  courseid: String
 }
 
 type course_creation {
   success: Boolean
   message: String
   error: err_msg
+  course_key: String
 }
 
 type err_msg {
