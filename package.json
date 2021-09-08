@@ -13,7 +13,7 @@
       "express": "^4.17.1",
       "form-data": "^3.0.0",
       "graphql": "^0.13.2",
-      "graphql-compose": "^7.9.0",
+      "graphql-compose": "^9.0.3",
       "graphql-compose-json": "^4.1.1",
       "graphql-fields": "^2.0.3",
       "graphql-list-fields": "^2.0.2",
